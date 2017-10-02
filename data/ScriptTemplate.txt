@@ -1,0 +1,48 @@
+[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+
+label(ret_iniConverter)
+label(org_iniConverter)
+label(exit_iniConverter)
+
+cave_iniConverter: //this is allocated memory, you have read,write,execute access
+  mov rcx,rsi
+  call 141B1F3A0
+  PUSHF
+  PUSH RSI
+  PUSH RDI
+  PUSH RCX
+  PUSH RBX
+  mov rbx, rdi
+  jmp org_iniConverter
+
+
+org_iniConverter:
+  jmp exit_iniConverter
+
+  
+  
+exit_iniConverter:
+  POP RBX
+  POP RCX
+  POP RDI
+  POP RSI
+  POPF
+  jmp ret_iniConverter
+
+"FIFA18.exe"+1B1F371:
+  jmp cave_iniConverter
+  nop
+  nop
+  nop
+  ret_iniConverter:
+
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(cave_iniConverter)
+"FIFA18.exe"+1B1F371:
+mov rcx,rsi
+call 141B1F3A0
+//Alt: db 48 8B CE E8 27 00 00 00
