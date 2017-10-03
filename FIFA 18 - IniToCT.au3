@@ -1,7 +1,7 @@
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
 #AutoIt3Wrapper_Outfile=IniToCT 18.Exe
 #AutoIt3Wrapper_UseX64=n
-#AutoIt3Wrapper_Res_Fileversion=1.3
+#AutoIt3Wrapper_Res_Fileversion=1.4
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 #include <array.au3>
 #include <File.au3>
@@ -242,7 +242,7 @@ Func CreateScript()
 		_ArrayInsert($arrTemplate, 25, "  je label_str" & $i)
 	Next
 
-	_ArrayInsert($arrTemplate, 2, 'alloc(cave_iniConverter,$' & (105*$countChanges)+$sumStrLen & ',"FIFA18.exe"+1B1F371) // (105 bytes * Numberofchangedstuff) + SizeOfStrings')
+	_ArrayInsert($arrTemplate, 2, 'alloc(cave_iniConverter,$' & (105*$countChanges)+$sumStrLen & ',"FIFA18.exe"+1B1FB91) // (105 bytes * Numberofchangedstuff) + SizeOfStrings')
 
 	For $i = 0 To UBound($arrSections) - 1
 		_ArrayInsert($arrTemplate, 7, "label(label_str" & $i & ")")
