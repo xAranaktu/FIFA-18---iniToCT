@@ -147,6 +147,7 @@ Func Start()
 	Next
 
 	If $selectedItems > 0 And $countChanges > 0 Then
+		UpdateProgressBar(99, "Creating Script... it might take a moment.")
 		CreateScript()
 		UpdateProgressBar(100, "CONVERTED!")
 		If MsgBox(4, "DONE!", "Your .ini files has been converted." & @CRLF & "You have made " & $countChanges & " changes in " & $selectedItems & " file(s)." & @CRLF & "Do you want to execute script now?") = 6 Then
@@ -242,7 +243,7 @@ Func CreateScript()
 		_ArrayInsert($arrTemplate, 25, "  je label_str" & $i)
 	Next
 
-	_ArrayInsert($arrTemplate, 2, 'alloc(cave_iniConverter,$' & (105*$countChanges)+$sumStrLen & ',"FIFA18.exe"+1B1FB91) // (105 bytes * Numberofchangedstuff) + SizeOfStrings')
+	_ArrayInsert($arrTemplate, 2, 'alloc(cave_iniConverter,$' & (105*$countChanges)+$sumStrLen & ',"FIFA18.exe"+1B1FB81) // (105 bytes * Numberofchangedstuff) + SizeOfStrings')
 
 	For $i = 0 To UBound($arrSections) - 1
 		_ArrayInsert($arrTemplate, 7, "label(label_str" & $i & ")")
@@ -303,8 +304,8 @@ Func CompareIni($iniName)
 	_FileReadToArray($fUser, $arrUserFile)
 
 	If $arrOriginalFile[0] <> $arrUserFile[0] Then
-		MsgBox(16, "ERROR!", "Original lines: " & $arrOriginalFile[0] & @CRLF & "User file lines: " & $arrUserFile[0])
-		Return
+		MsgBox(16, "ERROR! - " & $iniName, "Original lines: " & $arrOriginalFile[0] & @CRLF & "User file lines: " & $arrUserFile[0])
+		Exit
 	EndIf
 
 	Local $Section = "" ; INI Section name goes here
