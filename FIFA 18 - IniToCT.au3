@@ -243,7 +243,7 @@ Func CreateScript()
 		_ArrayInsert($arrTemplate, 25, "  je label_str" & $i)
 	Next
 
-	_ArrayInsert($arrTemplate, 2, 'alloc(cave_iniConverter,$' & (105*$countChanges)+$sumStrLen & ',"FIFA18.exe"+1B1FB81) // (105 bytes * Numberofchangedstuff) + SizeOfStrings')
+	_ArrayInsert($arrTemplate, 2, 'alloc(cave_iniConverter,$' & (105*$countChanges)+$sumStrLen & ',"FIFA18.exe"+1B20131) // (105 bytes * Numberofchangedstuff) + SizeOfStrings')
 
 	For $i = 0 To UBound($arrSections) - 1
 		_ArrayInsert($arrTemplate, 7, "label(label_str" & $i & ")")
