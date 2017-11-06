@@ -1,7 +1,7 @@
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
 #AutoIt3Wrapper_Outfile=IniToCT 18.Exe
 #AutoIt3Wrapper_UseX64=n
-#AutoIt3Wrapper_Res_Fileversion=1.4
+#AutoIt3Wrapper_Res_Fileversion=1.5
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 #include <array.au3>
 #include <File.au3>
@@ -49,7 +49,7 @@ Global Const $Convertedtxt = @ScriptDir & "\Converted.txt"
 Global $countChanges = 0
 Global $allSelected = False
 Global $outputCT = True
-Global $hTreeItems[35]
+Global $hTreeItems[46]
 
 Dim $arrSections[0], $arrValues[0]
 

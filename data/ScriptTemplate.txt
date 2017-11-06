@@ -8,7 +8,7 @@ label(exit_iniConverter)
 
 cave_iniConverter: //this is allocated memory, you have read,write,execute access
   mov rcx,rsi
-  call 141B1F3A0
+  call 141B20160
   PUSHF
   PUSH RSI
   PUSH RDI
@@ -31,7 +31,7 @@ exit_iniConverter:
   POPF
   jmp ret_iniConverter
 
-"FIFA18.exe"+1B1F371:
+"FIFA18.exe"+1B20131:
   jmp cave_iniConverter
   nop
   nop
@@ -42,7 +42,33 @@ exit_iniConverter:
 [DISABLE]
 //code from here till the end of the code will be used to disable the cheat
 dealloc(cave_iniConverter)
-"FIFA18.exe"+1B1F371:
+"FIFA18.exe"+1B20131:
 mov rcx,rsi
-call 141B1F3A0
+call 141B20160
 //Alt: db 48 8B CE E8 27 00 00 00
+{
+"FIFA18.exe"+1B2010D: 83 C8 FF                          -  or eax,-01
+"FIFA18.exe"+1B20110: F0 0F C1 05 58 68 3D 04           - lock  xadd [FIFA18.exe+5EF6970],eax
+"FIFA18.exe"+1B20118: FF C8                             -  dec eax
+"FIFA18.exe"+1B2011A: 3D 00 00 00 01                    -  cmp eax,01000000
+"FIFA18.exe"+1B2011F: 73 CF                             -  jae FIFA18.exe+1B200F0
+"FIFA18.exe"+1B20121: E8 8A FA FF FF                    -  call FIFA18.exe+1B1FBB0
+"FIFA18.exe"+1B20126: 84 C0                             -  test al,al
+"FIFA18.exe"+1B20128: 74 11                             -  je FIFA18.exe+1B2013B
+"FIFA18.exe"+1B2012A: 44 0F B6 C5                       -  movzx r8d,bpl
+"FIFA18.exe"+1B2012E: 48 8B D7                          -  mov rdx,rdi
+// ---------- INJECTING HERE ----------
+"FIFA18.exe"+1B20131: 48 8B CE                          -  mov rcx,rsi
+"FIFA18.exe"+1B20134: E8 27 00 00 00                    -  call FIFA18.exe+1B20160
+// ---------- DONE INJECTING  ----------
+"FIFA18.exe"+1B20139: 8B D8                             -  mov ebx,eax
+"FIFA18.exe"+1B2013B: F0 FF 05 2E 68 3D 04              - lock  inc [FIFA18.exe+5EF6970]
+"FIFA18.exe"+1B20142: 8B C3                             -  mov eax,ebx
+"FIFA18.exe"+1B20144: 48 8B 5C 24 50                    -  mov rbx,[rsp+50]
+"FIFA18.exe"+1B20149: 48 8B 6C 24 58                    -  mov rbp,[rsp+58]
+"FIFA18.exe"+1B2014E: 48 8B 74 24 60                    -  mov rsi,[rsp+60]
+"FIFA18.exe"+1B20153: 48 83 C4 40                       -  add rsp,40
+"FIFA18.exe"+1B20157: 5F                                -  pop rdi
+"FIFA18.exe"+1B20158: C3                                -  ret 
+"FIFA18.exe"+1B20159: CC                                -  int 3 
+}
